@@ -7,7 +7,7 @@
 
 *{
     /* background-color: plum; */
-    background-image: url(img/horoscope_bkgr.jpg);
+    background-image: url(horoscope_bkgr.jpg);
 }
 p{
     text-align: center;
@@ -18,3 +18,4 @@ p{
     font-family: "PirataOne";
 
 }
+
