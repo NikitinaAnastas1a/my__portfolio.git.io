@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Квадратне рівняння</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffb9eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        h2 {
+            color: #2a0e28;
+        }
+
+        input {
+            padding: 8px;
+            width: 60px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #ffb433;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #f78400;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            min-height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Розв'язок квадратного рівняння ax² + bx + c = 0</h2>
+
+    <div>
+        <input type="number" id="a" placeholder="a">
+        <input type="number" id="b" placeholder="b">
+        <input type="number" id="c" placeholder="c">
+    </div>
+    <button id="solveBtn">Обчислити</button>
+
+    <p id="result"></p>
+
+    <script>
+        const aInput = document.getElementById("a");
+        const bInput = document.getElementById("b");
+        const cInput = document.getElementById("c");
+        const result = document.getElementById("result");
+        const solveBtn = document.getElementById("solveBtn");
+
+        function solveQuadratic() {
+            const a = parseFloat(aInput.value);
+            const b = parseFloat(bInput.value);
+            const c = parseFloat(cInput.value);
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                result.textContent = "Будь ласка, введіть всі коефіцієнти.";
+                return;
+            }
+
+            if (a === 0) {
+                result.textContent = "Це не квадратне рівняння (a = 0).";
+                return;
+            }
+
+            const D = b * b - 4 * a * c; // дискримінант
+
+            if (D > 0) {
+                const x1 = (-b + Math.sqrt(D)) / (2 * a);
+                const x2 = (-b - Math.sqrt(D)) / (2 * a);
+                result.textContent = `Два корені: x₁ = ${x1.toFixed(3)}, x₂ = ${x2.toFixed(3)}`;
+            } else if (D === 0) {
+                const x = -b / (2 * a);
+                result.textContent = `Один корінь: x = ${x.toFixed(3)}`;
+            } else {
+                const realPart = (-b / (2 * a)).toFixed(3);
+                const imagPart = (Math.sqrt(-D) / (2 * a)).toFixed(3);
+                result.textContent = `Два комплексні корені: x₁ = ${realPart} + ${imagPart}i, x₂ = ${realPart} - ${imagPart}i`;
+            }
+        }
+
+        solveBtn.addEventListener("click", solveQuadratic);
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>  alert('Я вмію вгадувати в який сезон ви народились!');
+ let month = prompt('Введіть, місяць вашого народження (наприклад, січень, лютий тощо):', '');
+   switch(month){
+    case 'січень':
+    case 'лютий':
+    case 'грудень':
+      alert('Ви народились взимку!');
+      alert('Jingle Bells, Jingle Bells');
+      break;
+    case 'березень':
+    case 'квітень':
+    case 'травень':
+      alert('Ви народились навесні!');
+      alert('Here comes the Sun')
+      break;
+    case 'липень':
+    case 'серпень':
+    case 'червень':
+      alert('Ви народились влітку!');
+      alert('Summertime')
+      break;
+    case 'вересень':
+    case 'жовтень':
+    case 'листопад':
+      alert('Ви народились восени!');
+      alert('Autumn Leaves')
+      break;
+    default:
+      alert('Некоректна назва місяця');
+   }
+</script>
+</body>
+</html>

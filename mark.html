@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оцінка дня</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #fff0fb;
+        }
+        h1{
+            color: #3d1442;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f294ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #ff69f7;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Яка в тебе оцінка?</h1>
+    <button onclick="checkGrade()">Ввести оцінку</button>
+
+    <script>
+        function checkGrade() {
+            let count = +prompt('Яку оцінку ви сьогодні отримали?', '');
+            switch(count){
+                case 1:
+                case 2:
+                case 3:
+                    alert('Потрібно більше старатись!');
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                    alert('Добре, але можна краще!');
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                    alert('Чудово, ти молодець!');
+                    break;
+                case 10:
+                case 11:
+                case 12:
+                    alert('Відмінно, так тримати!');
+                    break;
+                default:
+                    alert('Некоректна оцінка');
+            }
+        }
+    </script>
+
+</body>
+</html>

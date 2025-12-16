@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Населення країни</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fcceff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding-top: 50px;
+        }
+
+        h2 {
+            color: #36222e;
+        }
+
+        #langToggle {
+            background-color: #ffb7f7;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        #langToggle:hover {
+            background-color: #ffa3f6;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        #checkBtn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #ff9900;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #checkBtn:hover {
+            background-color: #ff7300;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            min-height: 24px;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Перевір населення країни</h2>
+
+    <button id="langToggle">Українська</button>
+
+    <div class="input-container">
+        <input type="text" id="countryInput" placeholder="Введіть країну">
+        <button id="checkBtn">OK</button>
+    </div>
+
+    <p id="result"></p>
+
+    <script>
+        // Дані країн українською
+        const populationDataUA = {
+            "україна": 44130000,
+            "сша": 331000000,
+            "канада": 38000000,
+            "франція": 67000000,
+            "німеччина": 83000000,
+            "японія": 125800000,
+            "китай": 1444000000,
+            "індія": 1393000000,
+            "великобританія": 68000000,
+            "італія": 60000000,
+            "іспанія": 47000000,
+            "австралія": 25600000,
+            "бразилія": 214000000,
+            "аргентина": 45600000,
+            "мексика": 126000000,
+            "польща": 38000000,
+            "росія": 146000000,
+            "туреччина": 84000000,
+            "єгипет": 104000000,
+            "південна корея": 51800000
+        };
+
+        // Дані країн англійською
+        const populationDataEN = {
+            "ukraine": 44130000,
+            "usa": 331000000,
+            "canada": 38000000,
+            "france": 67000000,
+            "germany": 83000000,
+            "japan": 125800000,
+            "china": 1444000000,
+            "india": 1393000000,
+            "united kingdom": 68000000,
+            "italy": 60000000,
+            "spain": 47000000,
+            "australia": 25600000,
+            "brazil": 214000000,
+            "argentina": 45600000,
+            "mexico": 126000000,
+            "poland": 38000000,
+            "russia": 146000000,
+            "turkey": 84000000,
+            "egypt": 104000000,
+            "south korea": 51800000
+        };
+
+        let currentLang = "UA"; // поточна мова
+
+        const input = document.getElementById("countryInput");
+        const button = document.getElementById("checkBtn");
+        const result = document.getElementById("result");
+        const langToggle = document.getElementById("langToggle");
+
+        function capitalizeWords(str) {
+            return str.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        }
+
+        function checkPopulation() {
+            const country = input.value.trim().toLowerCase();
+            let data = currentLang === "UA" ? populationDataUA : populationDataEN;
+
+            if(data[country]) {
+                result.textContent = currentLang === "UA"
+                    ? `Населення ${capitalizeWords(country)}: ${data[country].toLocaleString()}`
+                    : `Population of ${capitalizeWords(country)}: ${data[country].toLocaleString()}`;
+            } else {
+                result.textContent = currentLang === "UA" ? "Країну не знайдено" : "Country not found";
+            }
+        }
+
+        button.addEventListener("click", checkPopulation);
+
+        input.addEventListener("keypress", function(event) {
+            if(event.key === "Enter") {
+                checkPopulation();
+            }
+        });
+
+        langToggle.addEventListener("click", function() {
+            currentLang = currentLang === "UA" ? "EN" : "UA";
+            langToggle.textContent = currentLang === "UA" ? "Українська" : "English";
+            input.placeholder = currentLang === "UA" ? "Введіть країну" : "Enter country";
+            result.textContent = "";
+        });
+    </script>
+</body>
+</html>
+
+

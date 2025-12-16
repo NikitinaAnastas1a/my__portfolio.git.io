@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Вгадай число</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: #800040;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #ff3399;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ff99cc;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #ff3399;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff66b2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background-color: #ff3399;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    #attempts {
+      font-weight: bold;
+      color: #ff0066;
+    }
+  </style>
+</head>
+<body>
+  <h1>Гра "Вгадай число" (0-100)</h1>
+  <p>У вас є <span id="attempts">10</span> спроб</p>
+  <input type="number" id="guess" placeholder="Введіть число від 0 до 100">
+  <button id="check">Вгадати</button>
+  <p id="message"></p>
+
+  <script>
+    const maxAttempts = 10;
+    let attemptsLeft = maxAttempts;
+    let secretNumber = Math.floor(Math.random() * 101);
+
+    const message = document.getElementById('message');
+    const attemptsDisplay = document.getElementById('attempts');
+    const guessInput = document.getElementById('guess');
+    const checkBtn = document.getElementById('check');
+
+    checkBtn.addEventListener('click', () => {
+      let guess = Number(guessInput.value);
+
+      if (isNaN(guess) || guess < 0 || guess > 100) {
+        message.textContent = "Будь ласка, введіть число від 0 до 100.";
+        return;
+      }
+
+      attemptsLeft--;
+      attemptsDisplay.textContent = attemptsLeft;
+
+      if (guess === secretNumber) {
+        message.textContent = `Вітаю! Ви вгадали число ${secretNumber}! 💖`;
+        checkBtn.disabled = true;
+      } else if (attemptsLeft === 0) {
+        message.textContent = `Гра закінчена. Загадане число було ${secretNumber}. 💔`;
+        checkBtn.disabled = true;
+      } else if (guess < secretNumber) {
+        message.textContent = `Загадане число більше ${guess}. 🔼`;
+      } else {
+        message.textContent = `Загадане число менше ${guess}. 🔽`;
+      }
+
+      guessInput.value = '';
+      guessInput.focus();
+    });
+  </script>
+</body>
+</html>
+
